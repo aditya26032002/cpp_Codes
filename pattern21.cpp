@@ -1,39 +1,38 @@
-// wrong
 #include <iostream>
 using namespace std;
 
 int main(){
-    int n = 7;
-    // cin >> n;
+    int n = 5;
 
-    for(int row = 1; row <= n; row++){
+    int row = 1;
+    for(row; row <= n; row++){
         if(row <= (n/2 + 1)){
             int col = 1;
-            for(col; col <= (n - 1) - row; col++){
+            for(col; col <= (n/2 + 2 - row); col++){
                 cout<<"*\t";
             }
-            for(int n = 1; n <= (row * 2); n++){
-                cout<<"\t";
+            for(int count = 1; count <= (row * 2 -1); count++){
+                cout<<" \t";
             }
             col--;
-            for(col; col >= 1; col--){
+            for(col; col > 0; col--){
                 cout<<"*\t";
             }
         }
         else{
             int col = 1;
-            for(col; col <= (row - 2); col++){
+            for(col; col <= (row - n/2); col++){
                 cout<<"*\t";
             }
-            for(int t = 1; t <= (n - row + 1) * 2; t++){
-                cout<<"\t";
+            for(int count = 1; count <= (n - row) * 2 + 1; count++){
+                cout<<" \t";
             }
             col--;
-            for(col; col >= 1; col--){
+            for(col; col > 0; col--){
                 cout<<"*\t";
             }
         }
         cout<<endl;
     }
-    
+    return 0;
 }
