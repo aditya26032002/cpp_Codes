@@ -23,7 +23,7 @@ int main()
     int n, m;
     cin >> n >> m;
     int i = n + 1;
-    for (i; i < m; i++)
+    for (i; i <= m; i++)
     {
         if(primeOrNot(i)){
             cout<<"Found a value less than m i.e prime : "<<i;
