@@ -1,21 +1,28 @@
 #include <iostream>
 using namespace std;
 
+int hcf(int a , int b){
+	if(a <= b){
+		if((b % a) == 0){
+			return a;
+		}
+		else{
+			return hcf(b%a, a);
+		}
+	}
+	else{
+		if(a%b == 0){
+			return b;
+		}
+		else{
+			return hcf(a%b, b);
+		}
+	}
+}
+
 int main()
 {
-	int n = 101;
-	int num = n;
-	int reverse = 0;
-	while (num)
-	{
-		reverse = reverse * 10 + num % 10;
-		// cout<<reverse<<endl;
-		num /= 10;
-	}
-	// cout<<endl<<reverse<<endl;
-	if (reverse == n)
-		cout << "Yes";
-	else
-		cout << "No";
+	int a = 5, b = 30;
+	cout<<hcf(a,b);
 	return 0;
 }
