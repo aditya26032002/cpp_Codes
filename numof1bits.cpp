@@ -13,7 +13,7 @@ int hemmingWeight(uint32_t n){
 }
 
 int main(){
-    uint32_t n = 11;
+    uint32_t n = 15;
     cout<<hemmingWeight(n);
     return 0;
 }
