@@ -1,28 +1,13 @@
-#include <iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
-int hcf(int a , int b){
-	if(a <= b){
-		if((b % a) == 0){
-			return a;
+int main(){
+	for(int i = 0; i<=5; i++){
+		for (int j = 0; j <= 5; j++)
+		{
+			cout<<i<<" "<<j<<endl;
 		}
-		else{
-			return hcf(b%a, a);
-		}
+		
 	}
-	else{
-		if(a%b == 0){
-			return b;
-		}
-		else{
-			return hcf(a%b, b);
-		}
-	}
-}
-
-int main()
-{
-	int a = 5, b = 30;
-	cout<<hcf(a,b);
 	return 0;
 }

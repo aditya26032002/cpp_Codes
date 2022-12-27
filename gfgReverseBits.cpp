@@ -1,7 +1,8 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-long long power(int x, int toThe){
+long long power(int x, int toThe)
+{
     long long ans = 1;
     while (toThe)
     {
@@ -11,7 +12,7 @@ long long power(int x, int toThe){
     return ans;
 }
 
-void decimalToBinary(long long n, int bits[],int currPosition, int lastPosition)
+void decimalToBinary(long long n, int bits[], int currPosition, int lastPosition)
 {
     int quotient, remainder;
     quotient = n / 2;
@@ -29,12 +30,13 @@ void decimalToBinary(long long n, int bits[],int currPosition, int lastPosition)
     }
 }
 
-long long binaryToDecimal(int bits[], int lastPosition){
+long long binaryToDecimal(int bits[], int lastPosition)
+{
     long long ans = 0;
     for (int i = 0; i <= lastPosition; i++)
     {
-        if(bits[i] != 0)
-            ans = ans + bits[i]*power(2,lastPosition-i);
+        if (bits[i] != 0)
+            ans = ans + bits[i] * power(2, lastPosition - i);
     }
     return ans;
 }
@@ -53,15 +55,45 @@ long long binaryToDecimal(int bits[], int lastPosition){
 //  return ans;
 //  }
 
-int main(){
+int main()
+{
     long long num = 4294967295;
     int bits[32] = {0};
-    decimalToBinary(num, bits,0, 31);
-    for(int i = 0; i < 32; i++){
-        cout<<bits[i];
+    decimalToBinary(num, bits, 0, 31);
+    for (int i = 0; i < 32; i++)
+    {
+        cout << bits[i];
     }
-    cout<<endl<<binaryToDecimal(bits, 31)<<endl;
+    cout << endl
+         << binaryToDecimal(bits, 31) << endl;
 
     // reversedBits(num); //Easier approach---
     return 0;
 }
+
+// long long reversedBits(long long X)
+// {
+//     // code here
+//     int bits[32] = {0}, index = 0;
+//     // decimal to binary
+//     long long num = X, rem;
+//     while (num)
+//     {
+//         rem = num % 2;
+//         num /= 2;
+//         bits[index] = rem;
+//         index++;
+//     }
+//     // binary to decimal
+//     long long ans = 0;
+//     index = 0;
+//     while (index < 32)
+//     {
+//         if (bits[index] == 1)
+//         {
+//             ans += pow(2, 31 - index);
+//         }
+//         index++;
+//     }
+//     return ans;
+// }
