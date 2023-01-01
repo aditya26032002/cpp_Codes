@@ -2,12 +2,10 @@
 using namespace std;
 
 int main(){
-	for(int i = 0; i<=5; i++){
-		for (int j = 0; j <= 5; j++)
-		{
-			cout<<i<<" "<<j<<endl;
-		}
-		
+	int arr[100];
+	fill_n(arr, 100, 5);
+	for(int i = 0; i <= 99; i++){
+		cout<<arr[i]<<endl;
 	}
 	return 0;
 }
