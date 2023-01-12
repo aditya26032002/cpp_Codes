@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+
+// Not done
 vector<int> findArraySum(vector<int>&a, int n, vector<int>&b, int m) {
 	int num1 = 0;
     for(int i = 0; i<n; i++){
