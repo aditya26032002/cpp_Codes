@@ -2,10 +2,8 @@
 using namespace std;
 
 int main(){
-	int arr[100];
-	fill_n(arr, 100, 5);
-	for(int i = 0; i <= 99; i++){
-		cout<<arr[i]<<endl;
-	}
+	string s;
+	cin>>s;
+	cout<<s;
 	return 0;
 }
