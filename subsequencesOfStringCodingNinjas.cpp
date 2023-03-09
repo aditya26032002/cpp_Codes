@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void countSubsequences(string &s, string sub, int i, vector<string> &storeSubs)
+void storeSubsequences(string &s, string sub, int i, vector<string> &storeSubs)
 {
     if (i == s.length())
     {
@@ -10,17 +10,17 @@ void countSubsequences(string &s, string sub, int i, vector<string> &storeSubs)
         return;
     }
     // Exclude
-    countSubsequences(s, sub, i + 1, storeSubs);
+    storeSubsequences(s, sub, i + 1, storeSubs);
     // Include
     sub.push_back(s[i]);
-    countSubsequences(s, sub, i + 1, storeSubs);
+    storeSubsequences(s, sub, i + 1, storeSubs);
 }
 
 vector<string> subsequences(string str)
 {
     vector<string> storeSubs;
     string sub = "";
-    countSubsequences(str, sub, 0, storeSubs);
+    storeSubsequences(str, sub, 0, storeSubs);
     return storeSubs;
 }
 
