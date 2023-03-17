@@ -3,6 +3,7 @@ using namespace std;
 
 int main()
 {
-	cout << rand();
+	float a = 3.14;
+	cout << sizeof(a);
 	return 0;
 }
