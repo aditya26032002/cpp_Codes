@@ -74,6 +74,34 @@ public:
         }
         ptr2->next = ptr->next;
     }
+    Node *reverseList(Node *head)
+    {
+        Node *p1 = head;
+        if (p1->next == NULL)
+            return head;
+        Node *p2 = p1->next;
+        if (p2->next == NULL)
+        {
+            p1->next = NULL;
+            p2->next = p1;
+            return p2;
+        }
+        Node *p3 = p2->next;
+        p1->next = NULL;
+        while (1)
+        {
+            p2->next = p1;
+            p1 = p2;
+            p2 = p3;
+            p3 = p3->next;
+            if (p3 == NULL)
+            {
+                p2->next = p1;
+                break;
+            }
+        }
+        return p2;
+    }
 };
 
 int main()
@@ -100,7 +128,8 @@ int main()
 
     // head = head->deleteAtPosition(1);
     // head = head->deleteHead();
-    tail = head->deleteTail();
+    // tail = head->deleteTail();
+    head = head->reverseList(head);
     Node *ptr = head;
     while (true)
     {
