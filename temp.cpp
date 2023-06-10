@@ -3,7 +3,8 @@ using namespace std;
 
 int main()
 {
-	float a = 3.14;
-	cout << sizeof(a);
+	int a = 5;
+	char c = '0' + a;
+	cout << c;
 	return 0;
 }
