@@ -1,10 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+char ret()
+{
+	return 'a', 'b';
+}
+
 int main()
 {
-	int a = 5;
-	char c = '0' + a;
-	cout << c;
+	// int month = 4;
+	// float *sales = (float *)malloc(sizeof(float) * month);
+
+	cout << ret();
+
 	return 0;
 }
