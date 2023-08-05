@@ -10,6 +10,89 @@ struct Node
 class Solution
 {
 public:
+    vector<int> left(Node *root)
+    {
+        vector<int> leftNodes;
+        Node *ptr = root->left;
+        while (ptr != NULL)
+        {
+            if (ptr->left != NULL || ptr->right != NULL)
+            {
+                leftNodes.push_back(ptr->data);
+            }
+            if (ptr->left != NULL)
+            {
+                ptr = ptr->left;
+            }
+            else
+            {
+                ptr = ptr->right;
+            }
+        }
+        return leftNodes;
+    }
+
+    void getLeaf(Node *node, vector<int> &leaf)
+    {
+        if (node == NULL)
+        {
+            return;
+        }
+        if (node->left == NULL && node->right == NULL)
+        {
+            leaf.push_back(node->data);
+            return;
+        }
+        getLeaf(node->left, leaf);
+        getLeaf(node->right, leaf);
+    }
+
+    void right(Node *node, vector<int> &rightNodes)
+    {
+        if (node == NULL)
+        {
+            return;
+        }
+        if (node->left == NULL && node->right == NULL)
+        {
+            return;
+        }
+        if (node->right != NULL)
+        {
+            right(node->right, rightNodes);
+        }
+        else
+        {
+            right(node->left, rightNodes);
+        }
+        rightNodes.push_back(node->data);
+    }
+
+    vector<int> boundary(Node *root)
+    {
+        vector<int> leftNodes = left(root);
+
+        vector<int> leafNodes;
+        getLeaf(root->left, leafNodes);
+        getLeaf(root->right, leafNodes);
+
+        vector<int> rightNodes;
+        right(root->right, rightNodes);
+
+        vector<int> ans;
+        ans.push_back(root->data);
+        ans.insert(ans.end(), leftNodes.begin(), leftNodes.end());
+        ans.insert(ans.end(), leafNodes.begin(), leafNodes.end());
+        ans.insert(ans.end(), rightNodes.begin(), rightNodes.end());
+
+        return ans;
+    }
+};
+
+/*
+class Solution
+{
+public:
     void boundaryTraversal(Node *node, bool dir, bool sameDir, vector<int> &ans)
     {
         if (node == NULL)
@@ -92,6 +175,7 @@ public:
         return ans;
     }
 };
+*/
 
 int main()
 {
