@@ -356,6 +356,109 @@ public:
             }
         }
     }
+    // O(1) space.
+    void morrisTraversalInorder(node *root)
+    {
+        node *curr = root;
+        while (curr != NULL)
+        {
+            if (curr->left == NULL)
+            {
+                cout << curr->data << " ";
+                curr = curr->right;
+            }
+            else
+            {
+                node *pred = curr->left;
+                while (pred->right != NULL && pred->right != curr)
+                {
+                    pred = pred->right;
+                }
+                if (pred->right == NULL)
+                {
+                    pred->right = curr;
+                    curr = curr->left;
+                }
+                else
+                {
+                    pred->right = NULL;
+                    cout << curr->data << " ";
+                    curr = curr->right;
+                }
+            }
+        }
+        cout << endl;
+    }
+    // O(1) space.
+    void morrisTraversalPreorder(node *root)
+    {
+        node *curr = root;
+        while (curr != NULL)
+        {
+            if (curr->left == NULL)
+            {
+                cout << curr->data << " ";
+                curr = curr->right;
+            }
+            else
+            {
+                node *pred = curr->left;
+                while (pred->right != NULL && pred->right != curr)
+                {
+                    pred = pred->right;
+                }
+                if (pred->right == NULL)
+                {
+                    cout << curr->data << " ";
+                    pred->right = curr;
+                    curr = curr->left;
+                }
+                else
+                {
+                    pred->right = NULL;
+                    curr = curr->right;
+                }
+            }
+        }
+        cout << endl;
+    }
+    // Uses O(n) space.
+    void morrisTraversalPostorder(node *root)
+    {
+        node *curr = root;
+        vector<int> ans;
+        while (curr != NULL)
+        {
+            if (curr->right == NULL)
+            {
+                ans.push_back(curr->data);
+                curr = curr->left;
+            }
+            else
+            {
+                node *pred = curr->right;
+                while (pred->left != NULL && pred->left != curr)
+                {
+                    pred = pred->left;
+                }
+                if (pred->left == NULL)
+                {
+                    ans.push_back(curr->data);
+                    pred->left = curr;
+                    curr = curr->right;
+                }
+                else
+                {
+                    pred->left = NULL;
+                    curr = curr->left;
+                }
+            }
+        }
+        reverse(ans.begin(), ans.end());
+        for (auto i : ans)
+            cout << i << " ";
+        cout << endl;
+    }
 };
 
 int main()
@@ -364,8 +467,17 @@ int main()
     // root->buildTree(root);
     root->levelOrderTreeBuild(root);
     // root->traversal(root);
-    root->levelOrderTraversal(root);
+    // root->levelOrderTraversal(root);
     // root->reverseLevelOrderTraversal(root);
+
+    // cout << "\nMorris Traversal inorder : ";
+    // root->morrisTraversalInorder(root);
+
+    // cout << "\nMorris Traversal preorder : \n";
+    // root->morrisTraversalPreorder(root);
+
+    cout << "\nMorris Traversal postorder : \n";
+    root->morrisTraversalPostorder(root);
 
     // cout << "\nInorder : ";
     // root->inorder(root);
@@ -377,8 +489,8 @@ int main()
     // cout << "\nPreorder iterative: ";
     // root->preorderIterative(root);
 
-    // cout << "\nPost order : ";
-    // root->postorder(root);
+    cout << "\nPost order : ";
+    root->postorder(root);
     // cout << "\nPost order iterative: ";
     // root->postorderIterative(root);
     return 0;
