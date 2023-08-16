@@ -99,6 +99,17 @@ public:
         preorder(root->right);
     }
 
+    void inorder(Node *root)
+    {
+        if (root == NULL)
+        {
+            return;
+        }
+        inorder(root->left);
+        cout << root->data << " ";
+        inorder(root->right);
+    }
+
     void levelOrderTraversalBST(Node *root)
     {
         queue<Node *> q;
@@ -130,6 +141,41 @@ public:
         }
         cout << endl;
     }
+
+    bool search(Node *root, int x)
+    {
+        if (root == NULL)
+            return false;
+
+        if (root->data == x)
+            return true;
+
+        if (x < root->data)
+            return search(root->left, x);
+
+        else
+            return search(root->right, x);
+    }
+
+    int getMax(Node *root)
+    {
+        if (root == NULL)
+            return -1;
+        if (root->right == NULL)
+            return root->data;
+        return getMax(root->right);
+    }
+
+    int getMin(Node *root)
+    {
+        if (root == NULL)
+            return -1;
+
+        Node *temp = root;
+        while (temp->left != NULL)
+            temp = temp->left;
+        return temp->data;
+    }
 };
 
 int main()
@@ -140,5 +186,8 @@ int main()
     root->levelOrderTraversalBST(root);
     // cout << "Preorder traversal : " << endl;
     // root->preorder(root);
+
+    cout << "Minimum data : " << root->getMin(root) << endl;
+    cout << "Maximum data : " << root->getMax(root) << endl;
     return 0;
 }
