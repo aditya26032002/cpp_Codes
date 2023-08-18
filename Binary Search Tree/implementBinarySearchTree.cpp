@@ -157,24 +157,71 @@ public:
             return search(root->right, x);
     }
 
-    int getMax(Node *root)
+    Node *getMax(Node *root)
     {
         if (root == NULL)
-            return -1;
-        if (root->right == NULL)
-            return root->data;
-        return getMax(root->right);
+            return NULL;
+        Node *temp = root;
+        while (temp->right != NULL)
+            temp = temp->right;
+        return temp;
     }
 
-    int getMin(Node *root)
+    Node *getMin(Node *root)
     {
         if (root == NULL)
-            return -1;
+            return NULL;
 
         Node *temp = root;
         while (temp->left != NULL)
             temp = temp->left;
-        return temp->data;
+        return temp;
+    }
+
+    Node *deleteFromBST(Node *root, int val)
+    {
+        if (root == NULL)
+            return NULL;
+
+        if (root->data == val)
+        {
+            // 0 child
+            if (root->left == NULL && root->right == NULL)
+            {
+                delete root;
+                return NULL;
+            }
+            // 1 child
+            if (root->left == NULL)
+            {
+                Node *temp = root->right;
+                delete root;
+                return temp;
+            }
+            else if (root->right == NULL)
+            {
+                Node *temp = root->left;
+                delete root;
+                return temp;
+            }
+            // 2 child
+            else
+            {
+                // replacing curr node with min val in right i.e. successor
+                int successor = getMin(root->right)->data;
+                root->data = successor;
+                root->right = deleteFromBST(root->right, successor);
+                return root;
+            }
+        }
+        else
+        {
+            if (root->data < val)
+                root->right = deleteFromBST(root->right, val);
+            else
+                root->left = deleteFromBST(root->left, val);
+            return root;
+        }
     }
 };
 
@@ -182,12 +229,17 @@ int main()
 {
     Node *root = NULL;
     root->constructBST(root);
-    cout << "Level order traversal : " << endl;
-    root->levelOrderTraversalBST(root);
+    // cout << "Level order traversal : " << endl;
+    // root->levelOrderTraversalBST(root);
     // cout << "Preorder traversal : " << endl;
     // root->preorder(root);
+    cout << "\nInorder traversal : " << endl;
+    root->inorder(root);
 
-    cout << "Minimum data : " << root->getMin(root) << endl;
-    cout << "Maximum data : " << root->getMax(root) << endl;
+    // cout << "Minimum data : " << root->getMin(root) << endl;
+    // cout << "Maximum data : " << root->getMax(root) << endl;
+    root = root->deleteFromBST(root, 2);
+    cout << "\nInorder traversal : " << endl;
+    root->inorder(root);
     return 0;
 }
