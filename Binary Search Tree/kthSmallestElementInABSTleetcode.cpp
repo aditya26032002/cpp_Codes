@@ -53,6 +53,31 @@ public:
         }
         return ans;
     }
+
+    /* // Time O(n) space: O(h)
+    void solve(TreeNode *root, int &k, TreeNode *&ans)
+    {
+        if (root == NULL)
+            return;
+
+        solve(root->left, k, ans);
+
+        k--;
+        if (k == 0 && ans == NULL)
+            ans = root;
+
+        solve(root->right, k, ans);
+    }
+    int kthSmallest(TreeNode *root, int k)
+    {
+        TreeNode *ans = NULL;
+        solve(root, k, ans);
+
+        if (ans != NULL)
+            return ans->val;
+        return -1;
+    }
+    */
 };
 
 int main()
