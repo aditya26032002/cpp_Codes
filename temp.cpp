@@ -1,17 +1,11 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
-
-char ret()
-{
-	return 'a', 'b';
-}
 
 int main()
 {
-	// int month = 4;
-	// float *sales = (float *)malloc(sizeof(float) * month);
-
-	cout << ret();
-
+	vector<int> v = {1, 2, 3, 4};
+	for (auto i : v)
+		cout << i;
 	return 0;
 }
