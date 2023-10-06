@@ -33,13 +33,12 @@ public:
         int mini = INT_MAX, maxi = INT_MIN;
         for (int i = 0; i < k; i++)
         {
-            if (KSortedArray[i][0] > maxi)
-                maxi = KSortedArray[i][0];
+            maxi = max(maxi, KSortedArray[i][0]);
+            mini = min(mini, KSortedArray[i][0]);
             Node *n = new Node(KSortedArray[i][0], i, 0);
             minHeap.push(n);
         }
-        mini = minHeap.top()->data;
-        int range = abs(maxi - mini);
+        int range = maxi - mini;
         int ansMin = mini, ansMax = maxi;
 
         while (minHeap.size() == k)
@@ -47,15 +46,13 @@ public:
             Node *t = minHeap.top();
             minHeap.pop();
             int d = t->data, r = t->row, c = t->col;
-            if (c + 1 < k)
+            if (c + 1 < n)
             {
                 Node *n = new Node(KSortedArray[r][c + 1], r, c + 1);
                 minHeap.push(n);
 
                 mini = minHeap.top()->data;
-
-                if (n->data > maxi)
-                    maxi = n->data;
+                maxi = max(maxi, n->data);
 
                 delete t;
 
@@ -76,16 +73,27 @@ int main()
 {
     int n, k;
     cin >> n >> k;
-    int arr[n][N];
-    for (int i = 0; i < n; i++)
+    int arr[k][N];
+    for (int i = 0; i < k; i++)
     {
-        for (int j = 0; j < k; j++)
+        for (int j = 0; j < n; j++)
         {
             cin >> arr[i][j];
         }
     }
+    cout << endl
+         << endl;
     Solution s;
     pair<int, int> ans = s.findSmallestRange(arr, n, k);
     cout << ans.first << " " << ans.second << endl;
     return 0;
 }
+
+/*
+3 5
+1 3 5
+7 8 9
+2 4 6
+2 3 8
+5 7 11
+*/

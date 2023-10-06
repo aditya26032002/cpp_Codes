@@ -4,8 +4,8 @@ using namespace std;
 
 int main()
 {
-	vector<int> v = {1, 2, 3, 4};
-	for (auto i : v)
-		cout << i;
+	string s = "Hello";
+	s[3] = 'a';
+	cout << s;
 	return 0;
 }
