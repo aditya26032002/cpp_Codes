@@ -4,8 +4,6 @@ using namespace std;
 
 int main()
 {
-	string s = "Hello";
-	s[3] = 'a';
-	cout << s;
+	cout << 3628911 % 120 << endl;
 	return 0;
 }
