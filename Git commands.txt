@@ -1,0 +1,8 @@
+cd "Path"
+ls
+git init
+git remote add origin repoLink
+git remote -v
+git add .
+git commit -m "Message"
+git push origin master
